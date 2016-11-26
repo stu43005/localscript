@@ -1,0 +1,13 @@
+{
+  "name": "localscript",
+  "description": "run custom script on global context. (used in Google Chrome Extensions)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stu43005/localscript.git"
+  },
+  "authors": [
+    "stu43005"
+  ],
+  "license": "MIT"
+}
