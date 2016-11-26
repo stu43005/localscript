@@ -2,6 +2,8 @@ exports = module.exports = localScript;
 exports.getGlobalVariable = getGlobalVariable;
 
 function localScript(func, args) {
+	if (typeof func != "function") throw new TypeError("func is not a function");
+
 	var id = '__localScript__' + (new Date()).getTime();
 	var jsonArgs = JSON.stringify(args);
 
@@ -33,7 +35,11 @@ function localScript(func, args) {
 			if (e.detail.error) {
 				reject(e.detail.error);
 			} else {
-				resolve(JSON.parse(e.detail.data));
+				try {
+					resolve(JSON.parse(e.detail.data));
+				} catch (e) {
+					resolve();
+				}
 			}
 			document.removeEventListener(id, onReceive);
 		}
