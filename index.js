@@ -14,17 +14,30 @@
 				});
 				return document.dispatchEvent(event);
 			}
-			try {
-				var result = func(args);
+
+			function success(result) {
 				trigger(id, {
 					ok: true,
 					data: JSON.stringify(result)
 				});
-			} catch (e) {
+			}
+
+			function error(err) {
 				trigger(id, {
-					error: e.toString(),
+					error: err.toString(),
 					data: null
 				});
+			}
+
+			try {
+				var result = func(args);
+				if (typeof result == "object" && result instanceof Promise) {
+					result.then(r => success(r)).catch(err => error(err));
+				} else {
+					success(result);
+				}
+			} catch (err) {
+				error(err);
 			}
 		};
 
