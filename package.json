@@ -1,6 +1,6 @@
 {
   "name": "localscript",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "run custom script on global context. (used in Google Chrome Extensions)",
   "main": "index.js",
   "repository": {
