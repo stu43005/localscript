@@ -1,10 +1,12 @@
 (function(global) {
 	'use strict';
 
+	var serial = 0;
+
 	var localScript = function(func, args) {
 		if (typeof func != "function") throw new TypeError("func is not a function");
 
-		var id = '__localScript__' + (new Date()).getTime();
+		var id = '__localScript__' + (Math.random() + serial++);
 		var jsonArgs = JSON.stringify(args);
 
 		var innerFunction = function(id, func, args) {
